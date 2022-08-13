@@ -5,7 +5,6 @@ import { Car, cars as cars_list } from './cars';
 
 (async () => {
   let cars: Car[] = cars_list;
-  console.log(cars)
 
 
   //Create an express application
@@ -105,15 +104,25 @@ import { Car, cars as cars_list } from './cars';
   /// @TODO Add an endpoint to post a new car to our list
   // it should require id, type, model, and cost
 
-  app.post("/cars/", (req: Request, res: Response) => {
-    let {make, type,  model, cost, id } = req.body;
+  app.post("/cars/add", (req: Request, res: Response) => {
+    let { id, type,  model, cost, make} = req.body;
 
-    if(!make || type || model|| cost || id ) {
+    if(!id || !type || !model|| !cost || !make) {
       return res.status(400).send("make, type, model, cost, id are required");
     }
+
+    const new_car: Car = {
+      id: id,
+      make: make,
+      type: type,
+      model: model,
+      cost:cost
+    };
+    cars.push(new_car);
+
+    res.status(201).send(new_car);
   })
   
-
   // Start the Server
   app.listen( port, () => {
       console.log( `server running http://localhost:${ port }` );
