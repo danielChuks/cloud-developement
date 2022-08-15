@@ -6,7 +6,6 @@ import { Car, cars as cars_list } from './cars';
 (async () => {
   let cars: Car[] = cars_list;
 
-
   //Create an express application
   const app = express(); 
   //default port to listen
@@ -32,7 +31,6 @@ import { Car, cars as cars_list } from './cars';
         return res.status(400)
                   .send(`name is required`);
       }
-
       return res.status(200)
                 .send(`Welcome to the Cloud, ${name}!`);
   } );
@@ -64,7 +62,6 @@ import { Car, cars as cars_list } from './cars';
         return res.status(400)
                   .send(`name is required`);
       }
-
       return res.status(200)
                 .send(`Welcome to the Cloud, ${name}!`);
   } );
@@ -82,7 +79,6 @@ import { Car, cars as cars_list } from './cars';
     return res.status(200).json(cars_list);
   })
 
-
   // @TODO Add an endpoint to get a specific car
   // it should require id
   // it should fail gracefully if no matching car is found
@@ -96,7 +92,7 @@ import { Car, cars as cars_list } from './cars';
     const car = cars.filter((car) => car.id == parseInt(id));
 
       if(car && car.length === 0) {
-        return res.status(404).send("car not found")
+        return res.status(404).send("car not found");
       }
       res.status(200).send(car);
   })
@@ -112,11 +108,11 @@ import { Car, cars as cars_list } from './cars';
     }
 
     const new_car: Car = {
-      id: id,
-      make: make,
-      type: type,
-      model: model,
-      cost:cost
+      id,
+      make,
+      type,
+      model,
+      cost,
     };
     cars.push(new_car);
 
