@@ -10,3 +10,4 @@
     <AllowedHeader>*</AllowedHeader>
 </CORSRule>
 </CORSConfiguration>
+
